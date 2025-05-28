@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Particles.js Example</title>
+
+    <link rel="stylesheet" href="css/navbar.css" />
+
+    <style>
+      body,
+      html {
+        margin: 0;
+
+        padding: 0;
+
+        height: 100%;
+
+        overflow: hidden;
+
+        font-family: sans-serif;
+
+        background-color: #000000; /* Ensure black background */
+      }
+
+      #particles-js {
+        position: absolute;
+
+        width: 100%;
+
+        height: 100%;
+
+        background-color: #000000; /* Black background */
+
+        z-index: 1;
+      }
+
+      .content {
+        position: relative;
+
+        z-index: 2;
+
+        color: white;
+
+        text-align: center;
+
+        padding-top: 30vh;
+
+        pointer-events: none; /* Allow mouse events to pass through to particles */
+      }
+
+      .content h1,
+      .content p {
+        pointer-events: auto; /* Re-enable pointer events for text elements */
+      }
+
+      .content h1 {
+        font-size: 3rem;
+
+        margin-bottom: 1rem;
+
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .content p {
+        font-size: 1.2rem;
+
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+
+    <nav class="navbar">
+      <div class="nav-left">Midnight Systems</div>
+
+      <div class="nav-center">
+        <a href="#expertise">Expertise</a>
+
+        <a href="#services">Services</a>
+
+        <a href="#solutions">Solutions</a>
+      </div>
+
+      <div class="nav-right">Contact</div>
+    </nav>
+
+    <!-- Particle container -->
+
+    <div id="particles-js"></div>
+
+    <!-- Your main content -->
+
+    <div class="content">
+      <h1>Your Systems, Our Priority</h1>
+
+      <p>FORTIFY YOUR ENVIRONMENT</p>
+    </div>
+
+    <!-- Particles.js library -->
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script>
+      /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+
+      particlesJS.load("particles-js", "assets/particles.json", function () {
+        console.log("callback - particles.js config loaded");
+      });
+    </script>
+  </body>
+</html>
