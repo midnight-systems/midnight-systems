@@ -1,212 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Midnight Systems - Fortify Your Environment</title>
-    <link rel="stylesheet" href="css/navbar.css" />
-    <link rel="stylesheet" href="css/style.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Midnight Systems - Fortify Your Environment</title>
 
-    <style>
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-        font-family: sans-serif;
-        background-color: #000000; /* Ensure black background */
-      }
+  <!-- Fonts (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="css/navbar.css" />
 
-      .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 10;
-        /* Assuming navbar height is around 4rem (64px) based on padding */
-        /* If your navbar is taller, adjust the padding-top of .content and scroll-padding-top */
-      }
+  <!-- Embedded Styles -->
+  <style>
+    /* Reset and global styles */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      background-color: #000000;
+    }
 
-      #particles-js {
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        background-color: #000000; /* Black background */
-        z-index: 1;
-        top: 0;
-        left: 0;
-      }
+    /* Particles background layer */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 0;
+      background-color: #000000;
+    }
 
-      .main-content-wrapper {
-        position: relative;
-        z-index: 2;
-        height: 100vh;
-        overflow-y: auto;
-        scroll-behavior: smooth;
-        scroll-snap-type: y mandatory;
-        /* Add scroll-padding-top to make scroll-snap-align work correctly below fixed navbar */
-        scroll-padding-top: 5rem; /* Adjust this value to match your navbar's height */
-        margin-top: 0;
-        padding-top: 0;
-      }
+    /* Fixed navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5rem; /* 80px */
+      background-color: rgba(0, 0, 0, 0.9);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      z-index: 10;
+    }
 
-      .content {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: white;
-        /* pointer-events: none; REMOVED this, as it can hinder interaction unless specific elements have auto */
-        scroll-snap-align: start;
-        position: relative;
-        z-index: 2;
-        /* --- START HOME SECTION CENTERING FIX --- */
-        padding-top: 5rem; /* Pushes content down to account for fixed navbar height */
-        /* --- END HOME SECTION CENTERING FIX --- */
-      }
+    .navbar a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
 
-      .content h1,
-      .content p {
-        /* pointer-events: auto; Re-enable pointer events for text elements,
-           only needed if parent had pointer-events: none; which was removed from .content */
-      }
+    .nav-left,
+    .nav-center,
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
 
-      .content h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      }
+    /* Scrollable wrapper for all sections */
+    .main-content-wrapper {
+      position: relative;
+      top: 5rem; /* Push content below navbar */
+      height: calc(100vh - 5rem);
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      z-index: 2;
+    }
 
-      .content p {
-        font-size: 1.2rem;
-        opacity: 0.8;
-      }
-      
-      .section {
-        height: 100vh;
-        display: flex;
-        flex-direction: column; /* Added flex-direction for better content control */
-        align-items: center;
-        justify-content: center;
-        background-color: #111111;
-        color: white;
-        scroll-snap-align: start;
-        padding: 0 20px;
-        /* Add padding-top to ensure content is below the navbar on snap */
-        padding-top: 5rem; /* Match the scroll-padding-top and .content padding-top */
-      }
-      
-      .section-content {
-        max-width: 1200px;
-        text-align: center;
-      }
-      
-      .section h2 {
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      }
-      
-      .section p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        opacity: 0.9;
-        margin-bottom: 1.5rem;
-      }
-      
-      #expertise {
-        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-      }
-      
-      #services {
-        background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
-      }
-      
-      #solutions {
-        background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-      }
-    </style>
-  </head>
+    /* Generic section styles */
+    .section,
+    .content {
+      height: calc(100vh - 5rem); /* Adjust for navbar */
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 20px;
+      text-align: center;
+      color: white;
+    }
 
-  <body>
-    <div id="particles-js"></div>
+    .content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
 
-    <nav class="navbar">
-      <div class="nav-left">Midnight Systems</div>
-      <div class="nav-center">
-        <a href="#home">Home</a>
-        <a href="#expertise">Expertise</a>
-        <a href="#services">Services</a>
-        <a href="#solutions">Solutions</a>
-      </div>
-      <div class="nav-right">Contact</div>
-    </nav>
+    .content p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
 
-    <div class="main-content-wrapper">
-      <section id="home" class="content">
-        <h1>Your Systems, Our Priority</h1>
-        <p>FORTIFY YOUR ENVIRONMENT AGAINST INCREASING THREATS</p>
-      </section>
+    .section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
 
-      <section id="expertise" class="section">
-        <div class="section-content">
-          <h2>Our Expertise</h2>
-          <p>At Midnight Systems, our expertise lies in advanced cybersecurity solutions, network infrastructure hardening, and proactive threat intelligence. We specialize in safeguarding complex digital ecosystems against evolving cyber threats, ensuring business continuity and data integrity. Our team comprises industry-certified professionals with deep knowledge in penetration testing, incident response, compliance, and secure cloud deployments. We leverage cutting-edge technologies and methodologies to provide comprehensive protection tailored to your unique organizational needs.</p>
-        </div>
-      </section>
+    .section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      opacity: 0.9;
+      max-width: 800px;
+    }
 
-      <section id="services" class="section">
-        <div class="section-content">
-          <h2>Our Services</h2>
-          <p>We offer a broad spectrum of services designed to enhance your security posture. This includes comprehensive security audits, vulnerability assessments, and penetration testing to identify and remediate weaknesses. Our managed security services provide 24/7 monitoring and rapid incident response, allowing you to focus on your core business. We also provide security awareness training for your employees, ensuring a human firewall against social engineering attacks. Furthermore, our compliance and governance services help you navigate complex regulatory landscapes, such as GDPR, HIPAA, and ISO 27001, ensuring your operations meet industry standards.</p>
-        </div>
-      </section>
+    /* Section-specific background gradients */
+    #expertise {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    }
 
-      <section id="solutions" class="section">
-        <div class="section-content">
-          <h2>Innovative Solutions</h2>
-          <p>Midnight Systems develops and deploys innovative solutions to address the most pressing security challenges. Our offerings include AI-powered threat detection systems that learn and adapt to new attack patterns, next-generation firewalls with integrated intrusion prevention, and secure access service edge (SASE) platforms for distributed workforces. We also provide robust data encryption and data loss prevention (DLP) tools to protect your sensitive information. For organizations embracing cloud computing, our cloud security solutions ensure secure migration, configuration, and continuous monitoring of your cloud assets, providing peace of mind in a hybrid IT environment.</p>
-        </div>
-      </section>
+    #services {
+      background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    }
+
+    #solutions {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Background particles -->
+  <div id="particles-js"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-left">Midnight Systems</div>
+    <div class="nav-center">
+      <a href="#home">Home</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#services">Services</a>
+      <a href="#solutions">Solutions</a>
     </div>
+    <div class="nav-right">Contact</div>
+  </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script>
-      /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-      particlesJS.load("particles-js", "assets/particles.json", function () {
-        console.log("callback - particles.js config loaded");
-      });
+  <!-- Main scrolling content -->
+  <div class="main-content-wrapper">
+    <!-- Home Section -->
+    <section id="home" class="content">
+      <h1>Your Systems, Our Priority</h1>
+      <p>FORTIFY YOUR ENVIRONMENT AGAINST INCREASING THREATS</p>
+    </section>
 
-      // Smooth scrolling for navigation links
-      document.addEventListener('DOMContentLoaded', () => {
-        const navLinks = document.querySelectorAll('nav a');
-        const mainContentWrapper = document.querySelector('.main-content-wrapper');
-        const navbar = document.querySelector('.navbar');
+    <!-- Expertise Section -->
+    <section id="expertise" class="section">
+      <h2>Our Expertise</h2>
+      <p>
+        At Midnight Systems, our expertise lies in advanced cybersecurity solutions, network infrastructure hardening, and proactive threat intelligence. We specialize in safeguarding complex digital ecosystems against evolving cyber threats...
+      </p>
+    </section>
 
-        navLinks.forEach(link => {
-          link.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default anchor link behavior
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+    <!-- Services Section -->
+    <section id="services" class="section">
+      <h2>Our Services</h2>
+      <p>
+        We offer a broad spectrum of services designed to enhance your security posture. This includes comprehensive security audits, vulnerability assessments, and penetration testing...
+      </p>
+    </section>
 
-            if (targetElement && mainContentWrapper && navbar) {
-              const navbarHeight = navbar.offsetHeight; // Get the actual height of the navbar
+    <!-- Solutions Section -->
+    <section id="solutions" class="section">
+      <h2>Innovative Solutions</h2>
+      <p>
+        Midnight Systems develops and deploys innovative solutions to address the most pressing security challenges, including AI-powered detection, next-gen firewalls, and cloud security platforms.
+      </p>
+    </section>
+  </div>
 
-              // Calculate the scroll position, offsetting by the navbar height
-              // This makes the section start just below the navbar
-              const targetPosition = targetElement.offsetTop;
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    // Load particles configuration
+    particlesJS.load("particles-js", "assets/particles.json", function () {
+      console.log("callback - particles.js config loaded");
+    });
 
-              mainContentWrapper.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-              });
-            }
-          });
+    // Smooth scroll adjustment
+    document.addEventListener("DOMContentLoaded", () => {
+      const navLinks = document.querySelectorAll("nav a");
+      const mainContentWrapper = document.querySelector(".main-content-wrapper");
+
+      navLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            const offsetTop = targetElement.offsetTop;
+            mainContentWrapper.scrollTo({
+              top: offsetTop,
+              behavior: "smooth"
+            });
+          }
         });
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
