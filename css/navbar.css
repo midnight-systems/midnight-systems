@@ -1,82 +1,82 @@
 /* Navigation Styles */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10; /* Ensures navbar is on top of everything */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-  .nav-left {
-    color: white;
-    font-weight: 600;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
+.nav-left {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
 
-  .nav-left:hover {
-    color: #ff6b6b;
-  }
+.nav-left:hover {
+  color: #ff6b6b;
+}
 
-  .nav-center {
-    display: flex;
-    gap: 3rem;
-  }
+.nav-center {
+  display: flex;
+  gap: 3rem;
+}
 
-  .nav-center a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    position: relative;
-    transition: color 0.3s ease;
-    cursor: pointer;
-  }
+.nav-center a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
 
-  .nav-center a:hover {
-    color: #ff6b6b;
-  }
+.nav-center a:hover {
+  color: #ff6b6b;
+}
 
-  .nav-center a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 50%;
-    background-color: #ff6b6b;
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-  }
+.nav-center a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  background-color: #ff6b6b;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
 
-  .nav-center a:hover::after {
-    width: 100%;
-  }
+.nav-center a:hover::after {
+  width: 100%;
+}
 
 /* Updated styles for the nav-right button */
 .nav-right {
-  display: inline-block; /* Makes it behave like a block element, allowing padding and margin */
-  padding: 0.5rem 1.2rem; /* Top/bottom and left/right padding */
-  border: 1px solid #ff6b6b; /* Thin red outline */
-  border-radius: 5px; /* Slightly rounded corners for a button look */
-  background-color: rgba(255, 255, 255, 0.2); /* Light gray fill with some transparency */
-  color: white; /* Initial text color */
-  font-weight: 500;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease; /* Smooth transition for all changes on hover */
+display: inline-block;
+padding: 0.5rem 1.2rem;
+border: 1px solid #ff6b6b;
+border-radius: 5px;
+background-color: rgba(255, 255, 255, 0.2);
+color: white;
+font-weight: 500;
+font-size: 1rem;
+cursor: pointer;
+transition: all 0.3s ease;
 }
 
 .nav-right:hover {
-  background-color: #ff6b6b; /* Red fill on hover */
-  color: white; /* Keep text white on hover */
-  border-color: #ff6b6b; /* Ensure border stays red on hover */
+background-color: #ff6b6b;
+color: white;
+border-color: #ff6b6b;
 }
