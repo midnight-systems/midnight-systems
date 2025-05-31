@@ -6,9 +6,7 @@
   <title>Midnight Systems - Fortify Your Environment</title>
 
   <!-- Fonts (optional) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  
-  <link rel="stylesheet" href="css/navbar.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <!-- Embedded Styles -->
   <style>
@@ -33,33 +31,93 @@
       background-color: #000000;
     }
 
-    /* Fixed navbar */
+    /* Navigation Styles */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: 5rem; /* 80px */
-      background-color: rgba(0, 0, 0, 0.9);
-      color: white;
+      z-index: 10;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 2rem;
-      z-index: 10;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      height: 5rem;
     }
 
-    .navbar a {
+    /* Left side branding or logo */
+    .nav-left {
       color: white;
-      margin: 0 1rem;
-      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
     }
 
-    .nav-left,
-    .nav-center,
-    .nav-right {
+    .nav-left:hover {
+      color: #ff6b6b;
+    }
+
+    /* Center navigation links container */
+    .nav-center {
       display: flex;
-      align-items: center;
+      gap: 3rem;
+    }
+
+    /* Navigation links */
+    .nav-center a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    /* Hover effect on links */
+    .nav-center a:hover {
+      color: #ff6b6b;
+    }
+
+    /* Underline animation on hover */
+    .nav-center a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 50%;
+      background-color: #ff6b6b;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-center a:hover::after {
+      width: 100%;
+    }
+
+    /* Right side button style */
+    .nav-right {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      border: 1px solid #ff6b6b;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-right:hover {
+      background-color: #ff6b6b;
+      color: white;
+      border-color: #ff6b6b;
     }
 
     /* Scrollable wrapper for all sections */
@@ -87,17 +145,79 @@
       color: white;
     }
 
-    .content h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* Enhanced Home Section Styles */
+    #home {
+      position: relative;
+      background: radial-gradient(ellipse at center, rgba(255, 107, 107, 0.1) 0%, rgba(0, 0, 0, 0.8) 70%);
     }
 
-    .content p {
-      font-size: 1.2rem;
-      opacity: 0.8;
+    #home::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 0%, rgba(255, 107, 107, 0.05) 50%, transparent 100%);
+      pointer-events: none;
     }
 
+    .hero-content {
+      transform: translateY(-10vh);
+      z-index: 3;
+      position: relative;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, #ff6b6b 50%, #ffffff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .hero-subtitle::before,
+    .hero-subtitle::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
+    }
+
+    .hero-subtitle::before {
+      left: -80px;
+    }
+
+    .hero-subtitle::after {
+      right: -80px;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      line-height: 1.6;
+      margin: 0 auto;
+    }
+
+    /* Other section styles remain the same */
     .section h2 {
       font-size: 2.5rem;
       margin-bottom: 2rem;
@@ -123,6 +243,18 @@
     #solutions {
       background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
     }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero-subtitle::before,
+      .hero-subtitle::after {
+        display: none;
+      }
+      
+      .hero-content {
+        transform: translateY(-5vh);
+      }
+    }
   </style>
 </head>
 
@@ -144,10 +276,15 @@
 
   <!-- Main scrolling content -->
   <div class="main-content-wrapper">
-    <!-- Home Section -->
+    <!-- Enhanced Home Section -->
     <section id="home" class="content">
-      <h1>Your Systems, Our Priority</h1>
-      <p>FORTIFY YOUR ENVIRONMENT AGAINST INCREASING THREATS</p>
+      <div class="hero-content">
+        <h1>Your Systems, Our Priority</h1>
+        <p class="hero-subtitle">Fortify Your Environment</p>
+        <p class="hero-description">
+          Advanced cybersecurity solutions designed to protect your digital infrastructure against evolving threats
+        </p>
+      </div>
     </section>
 
     <!-- Expertise Section -->
@@ -176,11 +313,110 @@
   </div>
 
   <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    // Load particles configuration
-    particlesJS.load("particles-js", "assets/particles.json", function () {
-      console.log("callback - particles.js config loaded");
+    // Initialize particles with a custom configuration
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ff6b6b"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ff6b6b",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 6,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 400,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
     });
 
     // Smooth scroll adjustment
