@@ -135,7 +135,12 @@
       .nav-center {
         display: flex;
         gap: 2rem;
-        background: rgba(255, 255, 255, 0.05); /* Slightly transparent background */
+        background: rgba(
+          255,
+          255,
+          255,
+          0.05
+        ); /* Slightly transparent background */
         padding: 0.5rem 1.5rem;
         border-radius: 20px;
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -360,7 +365,9 @@
       .main-content-wrapper {
         position: relative;
         top: 2.75rem; /* Pushes content below the fixed navbar */
-        height: calc(100vh - 2.75rem); /* Makes it fill remaining viewport height */
+        height: calc(
+          100vh - 2.75rem
+        ); /* Makes it fill remaining viewport height */
         overflow-y: auto; /* Enables vertical scrolling */
         scroll-snap-type: y mandatory; /* Snaps to section boundaries */
         scroll-behavior: smooth; /* Smooth scrolling */
@@ -370,7 +377,9 @@
       /* Generic section styles for all content sections */
       .section,
       .content {
-        min-height: calc(100vh - 2.75rem); /* Ensures sections are at least viewport height */
+        min-height: calc(
+          100vh - 2.75rem
+        ); /* Ensures sections are at least viewport height */
         scroll-snap-align: start; /* Snaps to the start of the section */
         display: flex;
         align-items: center; /* Center content vertically */
@@ -410,7 +419,9 @@
       }
 
       .hero-content {
-        transform: translateY(-10vh); /* Slightly move content up for visual effect */
+        transform: translateY(
+          -10vh
+        ); /* Slightly move content up for visual effect */
         z-index: 3;
         position: relative;
       }
@@ -501,7 +512,10 @@
       /* Service cards container (Grid layout) */
       .service-cards-container {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Default 3 columns for desktop */
+        grid-template-columns: repeat(
+          3,
+          1fr
+        ); /* Default 3 columns for desktop */
         gap: 1rem;
         max-width: 1200px; /* Max width for the grid */
         width: 100%;
@@ -553,13 +567,13 @@
         background-position: -150% -150%, 0 0;
         background-image: linear-gradient(
           135deg,
-          rgba(255, 255, 255, 0.0) 0%,
+          rgba(255, 255, 255, 0) 0%,
           rgba(255, 255, 255, 0.02) 20%,
           rgba(255, 255, 255, 0.08) 40%,
           rgba(255, 255, 255, 0.15) 50%,
           rgba(255, 255, 255, 0.08) 60%,
           rgba(255, 255, 255, 0.02) 80%,
-          rgba(255, 255, 255, 0.0) 100%
+          rgba(255, 255, 255, 0) 100%
         );
         background-size: 300% 300%, 100% 100%;
         transition: background-position 0s ease;
@@ -767,11 +781,15 @@
         #home {
           padding-top: 5rem; /* Add extra padding to home section to push content down */
           padding-bottom: 3rem;
-          min-height: calc(100vh - 2.5rem); /* Keep home section at least viewport height */
+          min-height: calc(
+            100vh - 2.5rem
+          ); /* Keep home section at least viewport height */
         }
 
         .hero-content {
-          transform: translateY(0); /* Remove the negative translateY on mobile */
+          transform: translateY(
+            0
+          ); /* Remove the negative translateY on mobile */
           text-align: center; /* Explicitly center content within hero-content */
         }
 
@@ -884,7 +902,10 @@
       /* Desktop responsiveness (min-width: 1025px) - ensures default applies */
       @media (min-width: 1025px) {
         .service-cards-container {
-          grid-template-columns: repeat(3, 1fr); /* Back to 3 columns for larger screens */
+          grid-template-columns: repeat(
+            3,
+            1fr
+          ); /* Back to 3 columns for larger screens */
           gap: 1rem; /* Default gap */
           padding: 2rem 1rem; /* Default padding */
         }
@@ -964,8 +985,8 @@
           <h1>Your Systems, Our Priority</h1>
           <p class="hero-subtitle">Fortify Your Environment</p>
           <p class="hero-description">
-            Advanced cybersecurity solutions designed to protect your digital
-            infrastructure against evolving threats
+            Advanced solutions designed to build your digital infrastructure
+            against an ever-evolving landscape.
           </p>
         </div>
       </section>
@@ -973,10 +994,11 @@
       <section id="expertise" class="section">
         <h2>Our Expertise</h2>
         <p>
-          At Midnight Systems, our expertise lies in advanced cybersecurity
-          solutions, network infrastructure hardening, and proactive threat
-          intelligence. We specialize in safeguarding complex digital ecosystems
-          against evolving cyber threats...
+          At Midnight Systems, our expertise spans advanced solutions — from
+          cybersecurity and network infrastructure hardening to physical
+          surveillance systems like CCTV. We specialize in safeguarding complex
+          digital and physical ecosystems against evolving threats, combining
+          proactive intelligence with robust infrastructure protection.
         </p>
       </section>
 
@@ -997,7 +1019,7 @@
               comprehensive security coverage.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #3498db;"></div>
+              <div class="service-tag-dot" style="background: #3498db"></div>
               Security & Surveillance
             </div>
           </div>
@@ -1009,7 +1031,7 @@
               experience.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #e74c3c;"></div>
+              <div class="service-tag-dot" style="background: #e74c3c"></div>
               Digital Solutions
             </div>
           </div>
@@ -1021,7 +1043,7 @@
               your infrastructure.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #2ecc71;"></div>
+              <div class="service-tag-dot" style="background: #2ecc71"></div>
               Infrastructure & Connectivity
             </div>
           </div>
@@ -1033,7 +1055,7 @@
               capabilities.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #f39c12;"></div>
+              <div class="service-tag-dot" style="background: #f39c12"></div>
               Cybersecurity & Protection
             </div>
           </div>
@@ -1045,7 +1067,7 @@
               critical business information.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #9b59b6;"></div>
+              <div class="service-tag-dot" style="background: #9b59b6"></div>
               Data Protection & Recovery
             </div>
           </div>
@@ -1057,7 +1079,7 @@
               downtime across all systems.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #1abc9c;"></div>
+              <div class="service-tag-dot" style="background: #1abc9c"></div>
               System Optimization & Support
             </div>
           </div>
@@ -1204,7 +1226,7 @@
 
         /*
          *** Service Card Tap Effects for Mobile ***
-        */
+         */
         const serviceCards = document.querySelectorAll(".service-card");
         const activeCardTimeouts = new Map(); // Store timeouts for each card
 
@@ -1214,7 +1236,11 @@
             // We use click, as it also fires after touchstart/touchend on mobile,
             // and on mouse click on desktop.
             // We want to ensure this only applies for 'tap' scenarios, not desktop hover.
-            if (window.innerWidth <= 768 || ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+            if (
+              window.innerWidth <= 768 ||
+              "ontouchstart" in window ||
+              navigator.maxTouchPoints > 0
+            ) {
               e.stopPropagation(); // Prevent issues with parent click events or navigation
 
               // Clear any existing timeout for this card to restart the animation
@@ -1240,15 +1266,15 @@
 
           // Optional: On desktop, if the 'touched' class somehow lingers (e.g., from a touch event on a hybrid device)
           // this ensures it's removed when a mouse hovers, letting the normal hover take over.
-          card.addEventListener('mouseenter', function() {
-              if (this.classList.contains('touched')) {
-                  // Clear the timeout if mouse takes over
-                  if (activeCardTimeouts.has(card)) {
-                      clearTimeout(activeCardTimeouts.get(card));
-                      activeCardTimeouts.delete(card);
-                  }
-                  this.classList.remove('touched');
+          card.addEventListener("mouseenter", function () {
+            if (this.classList.contains("touched")) {
+              // Clear the timeout if mouse takes over
+              if (activeCardTimeouts.has(card)) {
+                clearTimeout(activeCardTimeouts.get(card));
+                activeCardTimeouts.delete(card);
               }
+              this.classList.remove("touched");
+            }
           });
         });
       });
