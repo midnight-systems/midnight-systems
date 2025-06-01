@@ -135,12 +135,7 @@
       .nav-center {
         display: flex;
         gap: 2rem;
-        background: rgba(
-          255,
-          255,
-          255,
-          0.05
-        ); /* Slightly transparent background */
+        background: rgba(255, 255, 255, 0.05); /* Slightly transparent background */
         padding: 0.5rem 1.5rem;
         border-radius: 20px;
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -365,9 +360,7 @@
       .main-content-wrapper {
         position: relative;
         top: 2.75rem; /* Pushes content below the fixed navbar */
-        height: calc(
-          100vh - 2.75rem
-        ); /* Makes it fill remaining viewport height */
+        height: calc(100vh - 2.75rem); /* Makes it fill remaining viewport height */
         overflow-y: auto; /* Enables vertical scrolling */
         scroll-snap-type: y mandatory; /* Snaps to section boundaries */
         scroll-behavior: smooth; /* Smooth scrolling */
@@ -377,9 +370,7 @@
       /* Generic section styles for all content sections */
       .section,
       .content {
-        min-height: calc(
-          100vh - 2.75rem
-        ); /* Ensures sections are at least viewport height */
+        min-height: calc(100vh - 2.75rem); /* Ensures sections are at least viewport height */
         scroll-snap-align: start; /* Snaps to the start of the section */
         display: flex;
         align-items: center; /* Center content vertically */
@@ -419,9 +410,7 @@
       }
 
       .hero-content {
-        transform: translateY(
-          -10vh
-        ); /* Slightly move content up for visual effect */
+        transform: translateY(-10vh); /* Slightly move content up for visual effect */
         z-index: 3;
         position: relative;
       }
@@ -512,10 +501,7 @@
       /* Service cards container (Grid layout) */
       .service-cards-container {
         display: grid;
-        grid-template-columns: repeat(
-          3,
-          1fr
-        ); /* Default 3 columns for desktop */
+        grid-template-columns: repeat(3, 1fr); /* Default 3 columns for desktop */
         gap: 1rem;
         max-width: 1200px; /* Max width for the grid */
         width: 100%;
@@ -544,7 +530,18 @@
         height: 200px; /* Default height for consistent cards */
       }
 
-      /* Enhanced shimmer effect for cards on hover */
+      /* Shared styles for hover and touch states */
+      .service-card:hover,
+      .service-card.touched {
+        background: rgba(30, 30, 30, 0.8);
+        border: 1px solid rgba(100, 100, 100, 0.4);
+        backdrop-filter: blur(20px);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8),
+          0 5px 15px rgba(255, 255, 255, 0.05);
+      }
+
+      /* Enhanced shimmer effect for cards on hover AND touch */
       .service-card::before {
         content: "";
         position: absolute;
@@ -556,13 +553,13 @@
         background-position: -150% -150%, 0 0;
         background-image: linear-gradient(
           135deg,
-          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.0) 0%,
           rgba(255, 255, 255, 0.02) 20%,
           rgba(255, 255, 255, 0.08) 40%,
           rgba(255, 255, 255, 0.15) 50%,
           rgba(255, 255, 255, 0.08) 60%,
           rgba(255, 255, 255, 0.02) 80%,
-          rgba(255, 255, 255, 0) 100%
+          rgba(255, 255, 255, 0.0) 100%
         );
         background-size: 300% 300%, 100% 100%;
         transition: background-position 0s ease;
@@ -571,7 +568,8 @@
         opacity: 0;
       }
 
-      .service-card:hover::before {
+      .service-card:hover::before,
+      .service-card.touched::before {
         background-position: 150% 150%, 0 0;
         transition-duration: 1.4s;
         opacity: 1;
@@ -622,23 +620,16 @@
           0 0 20px rgba(26, 188, 156, 0.2);
       }
 
-      .service-card:hover::after {
+      /* Apply glow on hover AND touch */
+      .service-card:hover::after,
+      .service-card.touched::after {
         opacity: 1;
       }
 
-      .service-card:not(:hover)::after {
+      /* Revert glow when not hovered/touched */
+      .service-card:not(:hover):not(.touched)::after {
         transition: opacity 0.3s ease;
         opacity: 0;
-      }
-
-      /* Glassmorphism and lift effect on card hover */
-      .service-card:hover {
-        background: rgba(30, 30, 30, 0.8);
-        border: 1px solid rgba(100, 100, 100, 0.4);
-        backdrop-filter: blur(20px);
-        transform: translateY(-3px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8),
-          0 5px 15px rgba(255, 255, 255, 0.05);
       }
 
       .service-card h3 {
@@ -652,7 +643,9 @@
         z-index: 2;
       }
 
-      .service-card:hover h3 {
+      /* Change heading color on hover AND touch */
+      .service-card:hover h3,
+      .service-card.touched h3 {
         color: #ffffff; /* White on hover */
         text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
       }
@@ -669,7 +662,9 @@
         text-align: center;
       }
 
-      .service-card:hover p {
+      /* Change paragraph color on hover AND touch */
+      .service-card:hover p,
+      .service-card.touched p {
         color: rgba(255, 255, 255, 0.95);
       }
 
@@ -697,7 +692,9 @@
         flex-shrink: 0;
       }
 
-      .service-card:hover .service-tag {
+      /* Change tag style on hover AND touch */
+      .service-card:hover .service-tag,
+      .service-card.touched .service-tag {
         background: rgba(60, 60, 60, 0.9);
         border-color: rgba(120, 120, 120, 0.5);
         color: rgba(255, 255, 255, 0.95);
@@ -750,7 +747,7 @@
         }
 
         .mobile-contact-btn {
-          padding: 0.8rem 1.5rem;
+          padding: 1rem 1.5rem; /* Adjust padding for mobile button */
           font-size: 1rem;
         }
 
@@ -770,15 +767,11 @@
         #home {
           padding-top: 5rem; /* Add extra padding to home section to push content down */
           padding-bottom: 3rem;
-          min-height: calc(
-            100vh - 2.5rem
-          ); /* Keep home section at least viewport height */
+          min-height: calc(100vh - 2.5rem); /* Keep home section at least viewport height */
         }
 
         .hero-content {
-          transform: translateY(
-            0
-          ); /* Remove the negative translateY on mobile */
+          transform: translateY(0); /* Remove the negative translateY on mobile */
           text-align: center; /* Explicitly center content within hero-content */
         }
 
@@ -891,10 +884,7 @@
       /* Desktop responsiveness (min-width: 1025px) - ensures default applies */
       @media (min-width: 1025px) {
         .service-cards-container {
-          grid-template-columns: repeat(
-            3,
-            1fr
-          ); /* Back to 3 columns for larger screens */
+          grid-template-columns: repeat(3, 1fr); /* Back to 3 columns for larger screens */
           gap: 1rem; /* Default gap */
           padding: 2rem 1rem; /* Default padding */
         }
@@ -974,8 +964,8 @@
           <h1>Your Systems, Our Priority</h1>
           <p class="hero-subtitle">Fortify Your Environment</p>
           <p class="hero-description">
-            Advanced solutions designed to build your digital infrastructure
-            against an ever-evolving landscape.
+            Advanced cybersecurity solutions designed to protect your digital
+            infrastructure against evolving threats
           </p>
         </div>
       </section>
@@ -983,11 +973,10 @@
       <section id="expertise" class="section">
         <h2>Our Expertise</h2>
         <p>
-          At Midnight Systems, our expertise spans advanced solutions —
-          from cybersecurity and network infrastructure hardening to physical
-          surveillance systems like CCTV. We specialize in safeguarding complex
-          digital and physical ecosystems against evolving threats, combining
-          proactive intelligence with robust infrastructure protection.
+          At Midnight Systems, our expertise lies in advanced cybersecurity
+          solutions, network infrastructure hardening, and proactive threat
+          intelligence. We specialize in safeguarding complex digital ecosystems
+          against evolving cyber threats...
         </p>
       </section>
 
@@ -1008,7 +997,7 @@
               comprehensive security coverage.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #3498db"></div>
+              <div class="service-tag-dot" style="background: #3498db;"></div>
               Security & Surveillance
             </div>
           </div>
@@ -1020,7 +1009,7 @@
               experience.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #e74c3c"></div>
+              <div class="service-tag-dot" style="background: #e74c3c;"></div>
               Digital Solutions
             </div>
           </div>
@@ -1032,7 +1021,7 @@
               your infrastructure.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #2ecc71"></div>
+              <div class="service-tag-dot" style="background: #2ecc71;"></div>
               Infrastructure & Connectivity
             </div>
           </div>
@@ -1044,7 +1033,7 @@
               capabilities.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #f39c12"></div>
+              <div class="service-tag-dot" style="background: #f39c12;"></div>
               Cybersecurity & Protection
             </div>
           </div>
@@ -1056,7 +1045,7 @@
               critical business information.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #9b59b6"></div>
+              <div class="service-tag-dot" style="background: #9b59b6;"></div>
               Data Protection & Recovery
             </div>
           </div>
@@ -1068,7 +1057,7 @@
               downtime across all systems.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #1abc9c"></div>
+              <div class="service-tag-dot" style="background: #1abc9c;"></div>
               System Optimization & Support
             </div>
           </div>
@@ -1211,6 +1200,56 @@
             isMenuOpen = false;
             document.body.style.overflow = "hidden"; // Ensure body overflow is hidden if desktop view is restored with menu open
           }
+        });
+
+        /*
+         *** Service Card Tap Effects for Mobile ***
+        */
+        const serviceCards = document.querySelectorAll(".service-card");
+        const activeCardTimeouts = new Map(); // Store timeouts for each card
+
+        serviceCards.forEach((card) => {
+          card.addEventListener("click", function (e) {
+            // Check if it's a touch-enabled device or small screen to prioritize tap effect
+            // We use click, as it also fires after touchstart/touchend on mobile,
+            // and on mouse click on desktop.
+            // We want to ensure this only applies for 'tap' scenarios, not desktop hover.
+            if (window.innerWidth <= 768 || ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+              e.stopPropagation(); // Prevent issues with parent click events or navigation
+
+              // Clear any existing timeout for this card to restart the animation
+              if (activeCardTimeouts.has(card)) {
+                clearTimeout(activeCardTimeouts.get(card));
+                activeCardTimeouts.delete(card);
+              }
+
+              // Add the 'touched' class to trigger the effect
+              this.classList.add("touched");
+
+              // Set a timeout to remove the 'touched' class after the animation duration
+              // The 1.4s (shimmer duration) + 0.5s (glow transition) + 1s (glow delay) = 2.9s is the full animation time,
+              // but we can set a shorter duration (e.g., 1.5s) for a snappier feel
+              const timeoutId = setTimeout(() => {
+                this.classList.remove("touched");
+                activeCardTimeouts.delete(card);
+              }, 1500); // Effect stays for 1.5 seconds
+
+              activeCardTimeouts.set(card, timeoutId);
+            }
+          });
+
+          // Optional: On desktop, if the 'touched' class somehow lingers (e.g., from a touch event on a hybrid device)
+          // this ensures it's removed when a mouse hovers, letting the normal hover take over.
+          card.addEventListener('mouseenter', function() {
+              if (this.classList.contains('touched')) {
+                  // Clear the timeout if mouse takes over
+                  if (activeCardTimeouts.has(card)) {
+                      clearTimeout(activeCardTimeouts.get(card));
+                      activeCardTimeouts.delete(card);
+                  }
+                  this.classList.remove('touched');
+              }
+          });
         });
       });
     </script>
