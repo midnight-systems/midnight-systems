@@ -336,79 +336,6 @@
         box-shadow: 0 10px 30px rgba(220, 80, 80, 0.4);
       }
 
-      /* Mobile responsiveness */
-      @media (max-width: 768px) {
-        .navbar {
-          padding: 0.75rem 1rem;
-        }
-
-        .nav-left {
-          font-size: 1rem;
-        }
-
-        .nav-center,
-        .nav-right {
-          display: none;
-        }
-
-        .mobile-menu-toggle {
-          display: flex;
-        }
-      }
-
-      /* Tablet responsiveness */
-      @media (max-width: 1024px) and (min-width: 769px) {
-        .nav-center {
-          gap: 1.5rem;
-          padding: 0.4rem 1rem;
-        }
-
-        .nav-center a {
-          font-size: 0.85rem;
-          padding: 0.3rem 0.6rem;
-        }
-
-        .nav-right {
-          padding: 0.5rem 1rem;
-          font-size: 0.85rem;
-        }
-      }
-
-      /* Very small mobile screens */
-      @media (max-width: 480px) {
-        .navbar {
-          padding: 0.5rem 0.75rem;
-          height: 2.5rem;
-        }
-
-        .nav-left {
-          font-size: 0.9rem;
-        }
-
-        .nav-left::before {
-          width: 6px;
-          height: 6px;
-          margin-right: 0.5rem;
-        }
-
-        .hamburger-line {
-          width: 22px;
-          height: 2px;
-          margin: 2px 0;
-        }
-
-        .mobile-menu a {
-          font-size: 1.5rem;
-          margin: 1rem 0;
-          padding: 0.8rem 1.5rem;
-        }
-
-        .mobile-contact-btn {
-          padding: 0.8rem 1.5rem;
-          font-size: 1rem;
-        }
-      }
-
       /* Scrollable wrapper for all sections */
       .main-content-wrapper {
         position: relative;
@@ -545,51 +472,6 @@
         background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
       }
 
-      /* Mobile adjustments for hero section and general sections */
-      @media (max-width: 768px) {
-        .main-content-wrapper {
-          top: 2.5rem; /* Adjust for smaller mobile navbar height */
-          height: calc(100vh - 2.5rem); /* Maintain fixed height scroll area */
-        }
-
-        .section,
-        .content {
-          min-height: auto; /* Allow sections to grow naturally */
-          padding: 3rem 15px; /* Add vertical padding for content spacing */
-          justify-content: flex-start; /* Align content to top within the section */
-          height: auto; /* Allow height to adjust to content */
-        }
-
-        #home {
-          padding-top: 5rem; /* Add extra padding to home section to push content down */
-          padding-bottom: 3rem;
-          min-height: calc(100vh - 2.5rem); /* Keep home section at least viewport height */
-        }
-
-        .hero-subtitle::before,
-        .hero-subtitle::after {
-          display: none;
-        }
-
-        .hero-content {
-          transform: translateY(0); /* Remove the negative translateY on mobile */
-        }
-
-        .section h2 {
-          font-size: 2rem;
-          margin-bottom: 1.5rem; /* Reduce margin for mobile headings */
-        }
-
-        .section p {
-          font-size: 1rem;
-          margin-bottom: 1.5rem; /* Add some bottom margin for paragraphs */
-        }
-
-        .hero-description {
-          font-size: 1rem;
-        }
-      }
-
       /* Service cards container */
       .service-cards-container {
         display: grid;
@@ -620,35 +502,6 @@
         justify-content: center;
         align-items: center;
         height: 200px; /* Default height */
-      }
-
-      /* Mobile service cards adjustments */
-      @media (max-width: 768px) {
-        .service-cards-container {
-          grid-template-columns: 1fr;
-          padding: 1rem;
-          gap: 1rem;
-        }
-
-        .service-card {
-          max-width: 100%;
-          margin: 0;
-          padding: 1.5rem 1rem;
-          height: auto; /* Allow height to adjust to content on mobile */
-          min-height: 160px; /* Ensure a minimum height for smaller cards */
-          justify-content: flex-start; /* Align content to top for better readability */
-          align-items: flex-start; /* Align text to left for better readability */
-          text-align: left; /* Align text to left for better readability */
-        }
-
-        .service-card h3 {
-          margin-bottom: 0.75rem; /* Reduce margin for mobile card titles */
-        }
-
-        .service-card p {
-          font-size: 0.9rem; /* Slightly smaller text for mobile cards */
-          margin-bottom: 0.75rem; /* Adjust margin */
-        }
       }
 
       /* Enhanced shimmer effect */
@@ -818,6 +671,223 @@
         line-height: 1.6;
         margin: 0 auto 3rem auto;
         text-align: center;
+      }
+
+      /*
+       *** Media Queries for Responsiveness ***
+      */
+
+      /* Mobile responsiveness (max-width: 768px) */
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 0.75rem 1rem;
+          height: 2.5rem; /* Adjusted for smaller mobile navbar */
+        }
+
+        .nav-left {
+          font-size: 1rem;
+        }
+
+        .nav-left::before {
+          width: 6px;
+          height: 6px;
+          margin-right: 0.5rem;
+        }
+
+        .nav-center,
+        .nav-right {
+          display: none;
+        }
+
+        .mobile-menu-toggle {
+          display: flex;
+        }
+
+        .mobile-menu a {
+          font-size: 1.5rem;
+          margin: 1rem 0;
+          padding: 0.8rem 1.5rem;
+        }
+
+        .mobile-contact-btn {
+          padding: 0.8rem 1.5rem;
+          font-size: 1rem;
+        }
+
+        .main-content-wrapper {
+          top: 2.5rem; /* Adjust for smaller mobile navbar height */
+          height: calc(100vh - 2.5rem); /* Maintain fixed height scroll area */
+        }
+
+        .section,
+        .content {
+          min-height: auto; /* Allow sections to grow naturally */
+          padding: 3rem 15px; /* Add vertical padding for content spacing */
+          justify-content: flex-start; /* Align content to top within the section */
+          height: auto; /* Allow height to adjust to content */
+        }
+
+        #home {
+          padding-top: 5rem; /* Add extra padding to home section to push content down */
+          padding-bottom: 3rem;
+          min-height: calc(100vh - 2.5rem); /* Keep home section at least viewport height */
+        }
+
+        .hero-content {
+          transform: translateY(0); /* Remove the negative translateY on mobile */
+          text-align: center; /* Explicitly center content within hero-content */
+        }
+
+        .hero-subtitle::before,
+        .hero-subtitle::after {
+          display: none;
+        }
+
+        .section h2 {
+          font-size: 2rem;
+          margin-bottom: 1.5rem; /* Reduce margin for mobile headings */
+        }
+
+        .section p {
+          font-size: 1rem;
+          margin-bottom: 1.5rem; /* Add some bottom margin for paragraphs */
+        }
+
+        .hero-description {
+          font-size: 1rem;
+        }
+
+        .service-cards-container {
+          grid-template-columns: 1fr; /* Single column for very small screens/phones */
+          padding: 1rem;
+          gap: 1rem;
+        }
+
+        .service-card {
+          max-width: 100%;
+          margin: 0;
+          padding: 1.5rem 1rem;
+          height: auto; /* Allow height to adjust to content on mobile */
+          min-height: 160px; /* Ensure a minimum height for smaller cards */
+          justify-content: center; /* Center content within the card vertically */
+          align-items: center; /* Center content horizontally */
+          text-align: center; /* Center text within the card */
+        }
+
+        .service-card h3 {
+          margin-bottom: 0.75rem; /* Reduce margin for mobile card titles */
+        }
+
+        .service-card p {
+          font-size: 0.9rem; /* Slightly smaller text for mobile cards */
+          margin-bottom: 0.75rem; /* Adjust margin */
+        }
+      }
+
+      /* Tablet responsiveness (min-width: 769px and max-width: 1024px) */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .navbar {
+          padding: 0.75rem 1.5rem; /* Slightly less padding than desktop */
+        }
+
+        .nav-center {
+          gap: 1.5rem;
+          padding: 0.4rem 1rem;
+        }
+
+        .nav-center a {
+          font-size: 0.85rem;
+          padding: 0.3rem 0.6rem;
+        }
+
+        .nav-right {
+          padding: 0.5rem 1rem;
+          font-size: 0.85rem;
+        }
+
+        .main-content-wrapper {
+          top: 2.75rem; /* Keep existing desktop top padding */
+          height: calc(100vh - 2.75rem);
+        }
+
+        .section,
+        .content {
+          padding: 4rem 30px; /* Adjust padding for tablets */
+        }
+
+        /* Service Cards specific for Tablets */
+        .service-cards-container {
+          grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+          gap: 1.5rem; /* Slightly more gap for tablets */
+          padding: 2rem 2rem; /* Adjusted padding */
+        }
+
+        .service-card {
+          height: auto; /* Allow cards to grow with content */
+          min-height: 220px; /* Slightly larger min-height for tablet cards */
+          padding: 1.75rem 1.5rem; /* Adjusted padding */
+        }
+
+        .service-card h3 {
+          font-size: 1.3rem; /* Slightly smaller heading for tablets */
+          margin-bottom: 0.8rem;
+        }
+
+        .service-card p {
+          font-size: 0.9rem; /* Slightly smaller text for tablets */
+        }
+
+        .services-description {
+          font-size: 1rem; /* Slightly smaller for tablets */
+          margin-bottom: 2rem;
+        }
+      }
+
+      /* Large desktop screens (min-width: 1025px) - ensures default applies */
+      @media (min-width: 1025px) {
+        .service-cards-container {
+          grid-template-columns: repeat(3, 1fr); /* Back to 3 columns for larger screens */
+          gap: 1rem; /* Default gap */
+          padding: 2rem 1rem; /* Default padding */
+        }
+        .service-card {
+          height: 200px; /* Default height */
+        }
+      }
+
+      /* Very small mobile screens (max-width: 480px) */
+      @media (max-width: 480px) {
+        .navbar {
+          padding: 0.5rem 0.75rem;
+          height: 2.5rem;
+        }
+
+        .nav-left {
+          font-size: 0.9rem;
+        }
+
+        .nav-left::before {
+          width: 6px;
+          height: 6px;
+          margin-right: 0.5rem;
+        }
+
+        .hamburger-line {
+          width: 22px;
+          height: 2px;
+          margin: 2px 0;
+        }
+
+        .mobile-menu a {
+          font-size: 1.5rem;
+          margin: 1rem 0;
+          padding: 0.8rem 1.5rem;
+        }
+
+        .mobile-contact-btn {
+          padding: 0.8rem 1.5rem;
+          font-size: 1rem;
+        }
       }
     </style>
   </head>
