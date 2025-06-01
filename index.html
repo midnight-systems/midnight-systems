@@ -11,7 +11,11 @@
     />
 
     <style>
-      /* Reset and global styles */
+      /*
+       *** Global Styles and Base Layout ***
+      */
+
+      /* Reset and global styles for body and html */
       html,
       body {
         margin: 0;
@@ -22,16 +26,20 @@
         background-color: #000000;
       }
 
-      /* Particles background layer */
+      /* Particles background layer - fixed behind all content */
       #particles-js {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100vh;
-        z-index: 0;
+        z-index: 0; /* Ensures it's at the very back */
         background-color: #000000;
       }
+
+      /*
+       *** Navigation Bar Styles ***
+      */
 
       /* Enhanced Navigation Styles */
       .navbar {
@@ -39,7 +47,7 @@
         top: 0;
         left: 0;
         right: 0;
-        z-index: 10;
+        z-index: 10; /* Ensures navbar is above other content */
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -49,13 +57,14 @@
           rgba(0, 0, 0, 0.95) 0%,
           rgba(20, 20, 20, 0.9) 100%
         );
-        backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px); /* Glassmorphism effect */
         border-bottom: 1px solid rgba(220, 80, 80, 0.25);
-        height: 2.75rem;
+        height: 2.75rem; /* Fixed height for consistency */
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        transition: all 0.3s ease;
+        transition: all 0.3s ease; /* Smooth transitions for hover effects */
       }
 
+      /* Navbar top border shimmer effect on hover */
       .navbar::before {
         content: "";
         position: absolute;
@@ -71,14 +80,14 @@
         );
         opacity: 0;
         transition: opacity 0.3s ease;
-        pointer-events: none;
+        pointer-events: none; /* Allows clicks to pass through */
       }
 
       .navbar:hover::before {
         opacity: 1;
       }
 
-      /* Enhanced Left side branding */
+      /* Enhanced Left side branding (logo/site name) */
       .nav-left {
         color: white;
         font-weight: 700;
@@ -87,21 +96,23 @@
         transition: all 0.3s ease;
         position: relative;
         text-shadow: 0 0 10px rgba(220, 80, 80, 0.4);
-        z-index: 12;
+        z-index: 12; /* Ensures it's above the shimmer */
       }
 
+      /* Animated dot next to branding */
       .nav-left::before {
         content: "";
         display: inline-block;
         width: 8px;
         height: 8px;
-        background: #dc5050;
+        background: #dc5050; /* Red dot */
         border-radius: 50%;
         margin-right: 0.75rem;
-        animation: pulse 2s infinite;
+        animation: pulse 2s infinite; /* Pulse animation */
         vertical-align: middle;
       }
 
+      /* Pulse animation for the dot */
       @keyframes pulse {
         0%,
         100% {
@@ -124,11 +135,16 @@
       .nav-center {
         display: flex;
         gap: 2rem;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(
+          255,
+          255,
+          255,
+          0.05
+        ); /* Slightly transparent background */
         padding: 0.5rem 1.5rem;
         border-radius: 20px;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px); /* Glassmorphism effect */
       }
 
       /* Desktop Navigation links */
@@ -153,7 +169,7 @@
         text-shadow: 0 0 10px rgba(220, 80, 80, 0.6);
       }
 
-      /* Enhanced underline animation */
+      /* Enhanced underline animation for links */
       .nav-center a::after {
         content: "";
         position: absolute;
@@ -171,7 +187,7 @@
         width: 80%;
       }
 
-      /* Desktop Right side button */
+      /* Desktop Right side button (Contact) */
       .nav-right {
         display: inline-block;
         padding: 0.6rem 1.25rem;
@@ -188,12 +204,13 @@
         cursor: pointer;
         transition: all 0.3s ease;
         position: relative;
-        overflow: hidden;
+        overflow: hidden; /* For the shimmer effect */
         text-transform: uppercase;
         letter-spacing: 1px;
         z-index: 12;
       }
 
+      /* Shimmer effect for the contact button */
       .nav-right::before {
         content: "";
         position: absolute;
@@ -222,9 +239,13 @@
         box-shadow: 0 8px 25px rgba(220, 80, 80, 0.5);
       }
 
-      /* Mobile hamburger menu styles */
+      /*
+       *** Mobile Menu Styles (Hamburger and Overlay) ***
+      */
+
+      /* Mobile hamburger menu icon */
       .mobile-menu-toggle {
-        display: none;
+        display: none; /* Hidden by default, shown in media queries */
         flex-direction: column;
         cursor: pointer;
         padding: 0.5rem;
@@ -241,7 +262,7 @@
         border-radius: 2px;
       }
 
-      /* Hamburger animation */
+      /* Hamburger animation for active state (X icon) */
       .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
         transform: rotate(45deg) translate(9px, 9px);
         background: #dc5050;
@@ -273,11 +294,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        z-index: 11;
+        z-index: 11; /* Above main content, below toggle */
         opacity: 0;
-        visibility: hidden;
+        visibility: hidden; /* Hidden until active */
         transition: all 0.3s ease;
-        transform: translateY(-20px);
+        transform: translateY(-20px); /* Initial subtle animation */
       }
 
       .mobile-menu.active {
@@ -336,25 +357,33 @@
         box-shadow: 0 10px 30px rgba(220, 80, 80, 0.4);
       }
 
+      /*
+       *** Main Content Area and Section Styling ***
+      */
+
       /* Scrollable wrapper for all sections */
       .main-content-wrapper {
         position: relative;
-        top: 2.75rem; /* Push content below navbar */
-        height: calc(100vh - 2.75rem); /* Default for larger screens */
-        overflow-y: auto;
-        scroll-snap-type: y mandatory;
-        scroll-behavior: smooth;
-        z-index: 2;
+        top: 2.75rem; /* Pushes content below the fixed navbar */
+        height: calc(
+          100vh - 2.75rem
+        ); /* Makes it fill remaining viewport height */
+        overflow-y: auto; /* Enables vertical scrolling */
+        scroll-snap-type: y mandatory; /* Snaps to section boundaries */
+        scroll-behavior: smooth; /* Smooth scrolling */
+        z-index: 2; /* Below navbar, above particles */
       }
 
-      /* Generic section styles */
+      /* Generic section styles for all content sections */
       .section,
       .content {
-        min-height: calc(100vh - 2.75rem); /* Use min-height for default */
-        scroll-snap-align: start;
+        min-height: calc(
+          100vh - 2.75rem
+        ); /* Ensures sections are at least viewport height */
+        scroll-snap-align: start; /* Snaps to the start of the section */
         display: flex;
-        align-items: center;
-        justify-content: center;
+        align-items: center; /* Center content vertically */
+        justify-content: center; /* Center content horizontally */
         flex-direction: column;
         padding: 0 20px;
         text-align: center;
@@ -369,9 +398,10 @@
           ellipse at center,
           rgba(114, 6, 6, 0.1) 0%,
           rgba(0, 0, 0, 0.8) 70%
-        );
+        ); /* Subtle radial gradient background */
       }
 
+      /* Overlay effect for home section */
       #home::before {
         content: "";
         position: absolute;
@@ -389,13 +419,15 @@
       }
 
       .hero-content {
-        transform: translateY(-10vh);
+        transform: translateY(
+          -10vh
+        ); /* Slightly move content up for visual effect */
         z-index: 3;
         position: relative;
       }
 
       .hero-content h1 {
-        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
         font-weight: 700;
         margin-bottom: 1.5rem;
         color: #ffffff;
@@ -405,7 +437,7 @@
       }
 
       .hero-subtitle {
-        font-size: clamp(1rem, 2.5vw, 1.4rem);
+        font-size: clamp(1rem, 2.5vw, 1.4rem); /* Responsive font size */
         font-weight: 500;
         color: rgba(255, 255, 255, 0.9);
         margin-bottom: 2rem;
@@ -414,6 +446,7 @@
         position: relative;
       }
 
+      /* Decorative lines next to subtitle */
       .hero-subtitle::before,
       .hero-subtitle::after {
         content: "";
@@ -440,7 +473,7 @@
         margin: 0 auto;
       }
 
-      /* Other section styles */
+      /* Other section headings and paragraphs */
       .section h2 {
         font-size: 2.5rem;
         margin-bottom: 2rem;
@@ -472,19 +505,26 @@
         background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
       }
 
-      /* Service cards container */
+      /*
+       *** Services Section Specific Styles (Cards) ***
+      */
+
+      /* Service cards container (Grid layout) */
       .service-cards-container {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(
+          3,
+          1fr
+        ); /* Default 3 columns for desktop */
         gap: 1rem;
-        max-width: 1200px;
+        max-width: 1200px; /* Max width for the grid */
         width: 100%;
         padding: 2rem 1rem;
         justify-content: center;
         box-sizing: border-box;
       }
 
-      /* Individual service card */
+      /* Individual service card styling */
       .service-card {
         background: rgba(15, 15, 15, 0.6);
         border: 1px solid rgba(80, 80, 80, 0.3);
@@ -496,15 +536,15 @@
         overflow: hidden;
         backdrop-filter: blur(10px);
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth animation */
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 200px; /* Default height */
+        justify-content: center; /* Center content vertically */
+        align-items: center; /* Center content horizontally */
+        height: 200px; /* Default height for consistent cards */
       }
 
-      /* Enhanced shimmer effect */
+      /* Enhanced shimmer effect for cards on hover */
       .service-card::before {
         content: "";
         position: absolute;
@@ -516,13 +556,13 @@
         background-position: -150% -150%, 0 0;
         background-image: linear-gradient(
           135deg,
-          rgba(255, 255, 255, 0.0) 0%,
+          rgba(255, 255, 255, 0) 0%,
           rgba(255, 255, 255, 0.02) 20%,
           rgba(255, 255, 255, 0.08) 40%,
           rgba(255, 255, 255, 0.15) 50%,
           rgba(255, 255, 255, 0.08) 60%,
           rgba(255, 255, 255, 0.02) 80%,
-          rgba(255, 255, 255, 0.0) 100%
+          rgba(255, 255, 255, 0) 100%
         );
         background-size: 300% 300%, 100% 100%;
         transition: background-position 0s ease;
@@ -537,7 +577,7 @@
         opacity: 1;
       }
 
-      /* Glow effect after shimmer */
+      /* Glow effect that appears after the shimmer */
       .service-card::after {
         content: "";
         position: absolute;
@@ -546,12 +586,12 @@
         right: 0;
         bottom: 0;
         opacity: 0;
-        transition: opacity 0.5s ease 1s;
-        z-index: 0;
+        transition: opacity 0.5s ease 1s; /* Delayed transition */
+        z-index: 0; /* Behind content */
         pointer-events: none;
       }
 
-      /* Individual card glow colors */
+      /* Individual card glow colors based on data-glow attribute */
       .service-card[data-glow="blue"]::after {
         box-shadow: inset 0 0 30px rgba(52, 152, 219, 0.3),
           0 0 20px rgba(52, 152, 219, 0.2);
@@ -591,7 +631,7 @@
         opacity: 0;
       }
 
-      /* Glassmorphism hover effect */
+      /* Glassmorphism and lift effect on card hover */
       .service-card:hover {
         background: rgba(30, 30, 30, 0.8);
         border: 1px solid rgba(100, 100, 100, 0.4);
@@ -603,7 +643,7 @@
 
       .service-card h3 {
         font-size: 1.4rem;
-        color: #dc5050;
+        color: #dc5050; /* Red color for headings */
         margin-bottom: 1rem;
         font-weight: 600;
         text-shadow: 0 0 8px rgba(220, 80, 80, 0.3);
@@ -613,7 +653,7 @@
       }
 
       .service-card:hover h3 {
-        color: #ffffff;
+        color: #ffffff; /* White on hover */
         text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
       }
 
@@ -647,7 +687,7 @@
         position: relative;
         z-index: 2;
         transition: all 0.3s ease;
-        margin-top: auto;
+        margin-top: auto; /* Pushes the tag to the bottom of the card */
       }
 
       .service-tag-dot {
@@ -663,7 +703,7 @@
         color: rgba(255, 255, 255, 0.95);
       }
 
-      /* Services section description */
+      /* Services section descriptive text */
       .services-description {
         font-size: 1.1rem;
         color: rgba(255, 255, 255, 0.8);
@@ -696,11 +736,11 @@
 
         .nav-center,
         .nav-right {
-          display: none;
+          display: none; /* Hide desktop nav links */
         }
 
         .mobile-menu-toggle {
-          display: flex;
+          display: flex; /* Show hamburger icon */
         }
 
         .mobile-menu a {
@@ -730,17 +770,21 @@
         #home {
           padding-top: 5rem; /* Add extra padding to home section to push content down */
           padding-bottom: 3rem;
-          min-height: calc(100vh - 2.5rem); /* Keep home section at least viewport height */
+          min-height: calc(
+            100vh - 2.5rem
+          ); /* Keep home section at least viewport height */
         }
 
         .hero-content {
-          transform: translateY(0); /* Remove the negative translateY on mobile */
+          transform: translateY(
+            0
+          ); /* Remove the negative translateY on mobile */
           text-align: center; /* Explicitly center content within hero-content */
         }
 
         .hero-subtitle::before,
         .hero-subtitle::after {
-          display: none;
+          display: none; /* Hide decorative lines on mobile */
         }
 
         .section h2 {
@@ -757,6 +801,7 @@
           font-size: 1rem;
         }
 
+        /* Services section: single column for mobile */
         .service-cards-container {
           grid-template-columns: 1fr; /* Single column for very small screens/phones */
           padding: 1rem;
@@ -843,10 +888,13 @@
         }
       }
 
-      /* Large desktop screens (min-width: 1025px) - ensures default applies */
+      /* Desktop responsiveness (min-width: 1025px) - ensures default applies */
       @media (min-width: 1025px) {
         .service-cards-container {
-          grid-template-columns: repeat(3, 1fr); /* Back to 3 columns for larger screens */
+          grid-template-columns: repeat(
+            3,
+            1fr
+          ); /* Back to 3 columns for larger screens */
           gap: 1rem; /* Default gap */
           padding: 2rem 1rem; /* Default padding */
         }
@@ -926,8 +974,8 @@
           <h1>Your Systems, Our Priority</h1>
           <p class="hero-subtitle">Fortify Your Environment</p>
           <p class="hero-description">
-            Advanced cybersecurity solutions designed to protect your digital
-            infrastructure against evolving threats
+            Advanced solutions designed to build your digital infrastructure
+            against an ever-evolving landscape.
           </p>
         </div>
       </section>
@@ -935,10 +983,11 @@
       <section id="expertise" class="section">
         <h2>Our Expertise</h2>
         <p>
-          At Midnight Systems, our expertise lies in advanced cybersecurity
-          solutions, network infrastructure hardening, and proactive threat
-          intelligence. We specialize in safeguarding complex digital ecosystems
-          against evolving cyber threats...
+          At Midnight Systems, our expertise spans advanced security solutions —
+          from cybersecurity and network infrastructure hardening to physical
+          surveillance systems like CCTV. We specialize in safeguarding complex
+          digital and physical ecosystems against evolving threats, combining
+          proactive intelligence with robust infrastructure protection.
         </p>
       </section>
 
@@ -959,7 +1008,7 @@
               comprehensive security coverage.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #3498db;"></div>
+              <div class="service-tag-dot" style="background: #3498db"></div>
               Security & Surveillance
             </div>
           </div>
@@ -971,7 +1020,7 @@
               experience.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #e74c3c;"></div>
+              <div class="service-tag-dot" style="background: #e74c3c"></div>
               Digital Solutions
             </div>
           </div>
@@ -983,7 +1032,7 @@
               your infrastructure.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #2ecc71;"></div>
+              <div class="service-tag-dot" style="background: #2ecc71"></div>
               Infrastructure & Connectivity
             </div>
           </div>
@@ -995,7 +1044,7 @@
               capabilities.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #f39c12;"></div>
+              <div class="service-tag-dot" style="background: #f39c12"></div>
               Cybersecurity & Protection
             </div>
           </div>
@@ -1007,7 +1056,7 @@
               critical business information.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #9b59b6;"></div>
+              <div class="service-tag-dot" style="background: #9b59b6"></div>
               Data Protection & Recovery
             </div>
           </div>
@@ -1019,7 +1068,7 @@
               downtime across all systems.
             </p>
             <div class="service-tag">
-              <div class="service-tag-dot" style="background: #1abc9c;"></div>
+              <div class="service-tag-dot" style="background: #1abc9c"></div>
               System Optimization & Support
             </div>
           </div>
@@ -1038,7 +1087,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script>
-      // Initialize particles with your custom configuration
+      // Function to initialize particles.js background
       particlesJS("particles-js", {
         particles: {
           number: {
@@ -1076,11 +1125,11 @@
         interactivity: {
           events: {
             onhover: {
-              enable: false,
+              enable: false, // Disables particle interaction on hover
               mode: "repulse",
             },
             onclick: {
-              enable: true,
+              enable: true, // Enables particle interaction on click
               mode: "repulse",
             },
           },
@@ -1092,29 +1141,29 @@
       const mobileMenu = document.getElementById("mobileMenu");
       let isMenuOpen = false;
 
+      // Event listener for hamburger menu toggle
       mobileToggle.addEventListener("click", function () {
-        isMenuOpen = !isMenuOpen;
+        isMenuOpen = !isMenuOpen; // Toggle menu state
 
         if (isMenuOpen) {
-          mobileToggle.classList.add("active");
-          mobileMenu.classList.add("active");
-          document.body.style.overflow = "hidden"; // Prevent scrolling when menu is open
+          mobileToggle.classList.add("active"); // Animate hamburger icon
+          mobileMenu.classList.add("active"); // Show mobile menu
+          document.body.style.overflow = "hidden"; // Prevent background scrolling
         } else {
-          mobileToggle.classList.remove("active");
-          mobileMenu.classList.remove("active");
-          // On mobile, if menu is closed, we still want the main-content-wrapper to be scrollable
-          document.body.style.overflow = "hidden"; // Keep overflow hidden for the main design to avoid double scrollbars
+          mobileToggle.classList.remove("active"); // Revert hamburger icon
+          mobileMenu.classList.remove("active"); // Hide mobile menu
+          document.body.style.overflow = "hidden"; // Keep overflow hidden for main design
         }
       });
 
-      // Close mobile menu when clicking on a link
+      // Close mobile menu when clicking on a navigation link
       const mobileLinks = mobileMenu.querySelectorAll("a");
       mobileLinks.forEach((link) => {
         link.addEventListener("click", function () {
           mobileToggle.classList.remove("active");
           mobileMenu.classList.remove("active");
           isMenuOpen = false;
-          document.body.style.overflow = "hidden"; // Revert to initial state
+          document.body.style.overflow = "hidden"; // Revert body overflow
         });
       });
 
@@ -1124,22 +1173,22 @@
           mobileToggle.classList.remove("active");
           mobileMenu.classList.remove("active");
           isMenuOpen = false;
-          document.body.style.overflow = "hidden"; // Revert to initial state
+          document.body.style.overflow = "hidden"; // Revert body overflow
         }
       });
 
-      // Smooth scroll adjustment
+      // Smooth scroll adjustment for navigation links
       document.addEventListener("DOMContentLoaded", () => {
         const allNavLinks = document.querySelectorAll("nav a, .mobile-menu a");
         const mainContentWrapper = document.querySelector(
           ".main-content-wrapper"
         );
-        const navbarHeight = document.querySelector('.navbar').offsetHeight; // Dynamically get navbar height
+        const navbarHeight = document.querySelector(".navbar").offsetHeight; // Dynamically get navbar height
 
         allNavLinks.forEach((link) => {
           link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute("href");
+            e.preventDefault(); // Prevent default anchor link behavior
+            const targetId = this.getAttribute("href"); // Get the target section ID
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
@@ -1147,13 +1196,14 @@
               const offsetTop = targetElement.offsetTop - navbarHeight;
               mainContentWrapper.scrollTo({
                 top: offsetTop,
-                behavior: "smooth",
+                behavior: "smooth", // Smooth scroll effect
               });
             }
           });
         });
 
         // Handle window resize for mobile menu state
+        // If screen resizes to desktop while mobile menu is open, close it
         window.addEventListener("resize", function () {
           if (window.innerWidth > 768 && isMenuOpen) {
             mobileToggle.classList.remove("active");
