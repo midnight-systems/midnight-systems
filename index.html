@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Midnight Systems - Fortify Your Environment</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
@@ -237,6 +237,15 @@
         border-color: #e74c3c;
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(220, 80, 80, 0.5);
+      }
+
+      /* Fix for contact button - prevent underline */
+      .nav-right::after {
+        display: none !important;
+      }
+
+      .nav-right {
+        text-decoration: none !important;
       }
 
       /*
@@ -962,7 +971,7 @@
         <a href="#services">Services</a>
         <a href="#solutions">Solutions</a>
       </div>
-      <div class="nav-right">Contact</div>
+      <a href="contact.html" class="nav-right">Contact</a>
 
       <div class="mobile-menu-toggle" id="mobileToggle">
         <div class="hamburger-line"></div>
@@ -976,7 +985,7 @@
       <a href="#expertise">Expertise</a>
       <a href="#services">Services</a>
       <a href="#solutions">Solutions</a>
-      <div class="mobile-contact-btn">Contact</div>
+      <a href="contact.html" class="mobile-contact-btn">Contact</a>
     </div>
 
     <div class="main-content-wrapper">
@@ -1194,81 +1203,71 @@
         const mainContentWrapper = document.querySelector(
           ".main-content-wrapper"
         );
-        const navbarHeight = document.querySelector(".navbar").offsetHeight; // Dynamically get navbar height
+        const navbarHeight = document.querySelector(".navbar").offsetHeight;
 
         allNavLinks.forEach((link) => {
           link.addEventListener("click", function (e) {
-            e.preventDefault(); // Prevent default anchor link behavior
-            const targetId = this.getAttribute("href"); // Get the target section ID
-            const targetElement = document.querySelector(targetId);
+            const targetId = this.getAttribute("href");
 
-            if (targetElement) {
-              // Calculate scroll position, accounting for the fixed navbar
-              const offsetTop = targetElement.offsetTop - navbarHeight;
-              mainContentWrapper.scrollTo({
-                top: offsetTop,
-                behavior: "smooth", // Smooth scroll effect
-              });
+            // Only prevent default for internal anchor links (starting with #)
+            if (targetId && targetId.startsWith("#")) {
+              e.preventDefault(); // Only prevent default for internal links
+              const targetElement = document.querySelector(targetId);
+
+              if (targetElement) {
+                // Calculate scroll position, accounting for the fixed navbar
+                const offsetTop = targetElement.offsetTop - navbarHeight;
+                mainContentWrapper.scrollTo({
+                  top: offsetTop,
+                  behavior: "smooth",
+                });
+              }
             }
+            // For external links (like contact.html), let the default behavior happen
           });
         });
 
         // Handle window resize for mobile menu state
-        // If screen resizes to desktop while mobile menu is open, close it
         window.addEventListener("resize", function () {
           if (window.innerWidth > 768 && isMenuOpen) {
             mobileToggle.classList.remove("active");
             mobileMenu.classList.remove("active");
             isMenuOpen = false;
-            document.body.style.overflow = "hidden"; // Ensure body overflow is hidden if desktop view is restored with menu open
+            document.body.style.overflow = "hidden";
           }
         });
 
-        /*
-         *** Service Card Tap Effects for Mobile ***
-         */
+        // Service Card Tap Effects for Mobile
         const serviceCards = document.querySelectorAll(".service-card");
-        const activeCardTimeouts = new Map(); // Store timeouts for each card
+        const activeCardTimeouts = new Map();
 
         serviceCards.forEach((card) => {
           card.addEventListener("click", function (e) {
-            // Check if it's a touch-enabled device or small screen to prioritize tap effect
-            // We use click, as it also fires after touchstart/touchend on mobile,
-            // and on mouse click on desktop.
-            // We want to ensure this only applies for 'tap' scenarios, not desktop hover.
             if (
               window.innerWidth <= 768 ||
               "ontouchstart" in window ||
               navigator.maxTouchPoints > 0
             ) {
-              e.stopPropagation(); // Prevent issues with parent click events or navigation
+              e.stopPropagation();
 
-              // Clear any existing timeout for this card to restart the animation
               if (activeCardTimeouts.has(card)) {
                 clearTimeout(activeCardTimeouts.get(card));
                 activeCardTimeouts.delete(card);
               }
 
-              // Add the 'touched' class to trigger the effect
               this.classList.add("touched");
 
-              // Set a timeout to remove the 'touched' class after the animation duration
-              // The 1.4s (shimmer duration) + 0.5s (glow transition) + 1s (glow delay) = 2.9s is the full animation time,
-              // but we can set a shorter duration (e.g., 1.5s) for a snappier feel
               const timeoutId = setTimeout(() => {
                 this.classList.remove("touched");
                 activeCardTimeouts.delete(card);
-              }, 1500); // Effect stays for 1.5 seconds
+              }, 1500);
 
               activeCardTimeouts.set(card, timeoutId);
             }
           });
 
-          // Optional: On desktop, if the 'touched' class somehow lingers (e.g., from a touch event on a hybrid device)
-          // this ensures it's removed when a mouse hovers, letting the normal hover take over.
           card.addEventListener("mouseenter", function () {
             if (this.classList.contains("touched")) {
-              // Clear the timeout if mouse takes over
               if (activeCardTimeouts.has(card)) {
                 clearTimeout(activeCardTimeouts.get(card));
                 activeCardTimeouts.delete(card);
