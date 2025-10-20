@@ -88,29 +88,41 @@
       }
 
       /* Enhanced Left side branding (logo/site name) */
-      .nav-left {
-        color: white;
-        font-weight: 700;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        position: relative;
-        text-shadow: 0 0 10px rgba(220, 80, 80, 0.4);
-        z-index: 12; /* Ensures it's above the shimmer */
-      }
+     .nav-left {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Space between logo and text */
+}
 
-      /* Animated dot next to branding */
-      .nav-left::before {
-        content: "";
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        background: #dc5050; /* Red dot */
-        border-radius: 50%;
-        margin-right: 0.75rem;
-        animation: pulse 2s infinite; /* Pulse animation */
-        vertical-align: middle;
-      }
+.nav-left img {
+  height: 40px; /* Adjust this value based on your logo size */
+  width: auto;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(220, 80, 80, 0.4));
+}
+
+.nav-left span {
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(220, 80, 80, 0.4);
+  transition: all 0.3s ease;
+}
+
+.nav-left:hover img {
+  filter: drop-shadow(0 0 20px rgba(220, 80, 80, 0.7));
+  transform: translateY(-1px);
+}
+
+.nav-left:hover span {
+  color: #dc5050;
+  transform: translateY(-1px);
+  text-shadow: 0 0 20px rgba(220, 80, 80, 0.7);
+}
 
       /* Pulse animation for the dot */
       @keyframes pulse {
@@ -746,8 +758,15 @@
 
         .nav-left {
           font-size: 1rem;
+          gap: 0.5rem;
         }
-
+        .nav-left img {
+    height: 30px; /* Smaller logo for mobile */
+  }
+  
+  .nav-left span {
+    font-size: 1rem;
+  }
         .nav-left::before {
           width: 6px;
           height: 6px;
@@ -964,7 +983,11 @@
     <div id="particles-js"></div>
 
     <nav class="navbar">
-      <div class="nav-left">Midnight Systems</div>
+      <div class="nav-left">
+  <img src="assets/Midnight-Logo-Transparent-Bck-removebg-preview.png" alt="Midnight Systems Logo">
+  <span>Midnight Systems</span>
+</div>
+      </div>
       <div class="nav-center">
         <a href="#home">Home</a>
         <a href="#expertise">Expertise</a>
